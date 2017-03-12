@@ -1,0 +1,69 @@
+<html>
+	<!-- <meta http-equiv="refresh" content="5"></meta> -->
+	<head>
+		<title>Koalin - Collaboration interface</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div id="image_header">
+   			<img src="koalin.png"/>
+		</div>
+		
+		<div id="main_content">
+			<table id="content_table"> 
+			</table>
+			<form action="process.php" method="POST" id="add_form">
+				<textarea name="text" id="text_to_add" cols="40" rows="5"></textarea>
+				<button type="submit" id="add_koalin">Koalin</button>
+			</form>
+		</div>
+	
+	</body>
+</html>
+
+<script>
+
+var content_table = document.getElementById("content_table");
+
+readTextFile();
+setInterval(readTextFile,10000);
+
+function clearRows() {
+	while (content_table.firstChild) {
+		content_table.removeChild(content_table.firstChild);
+	}
+}
+
+function readTextFile()
+{
+	file = "./data/data.txt";
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+            	clearRows();
+                var allText = rawFile.responseText;
+                var lines = allText.split('\n');
+                for(var i = 0;i < lines.length;i++){
+                    addRow(lines[i]);
+                }
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
+
+function addRow(text) {
+	if(text!="") {
+		var row = content_table.insertRow(-1);
+		var cell = row.insertCell();
+		cell.innerHTML = text;
+	} 
+}
+
+</script>
