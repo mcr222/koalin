@@ -7,25 +7,24 @@
 	<body>
 		<div id="image_header">
    			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			<img src="koalin.png"/>
+   			
 		</div>
 		
 		<div id="main_content">
 			<div id="two_tables">
+				<div id="header">Koalinfo</div>
+				<div id="header">Koallaboration</div>
 				<table id="koalinfo_table"> 
-				<thead>
-				  <tr>
-				    <th>Koalinfo</th>
-				  </tr>
-				  </thead>
-				  <tbody id="koalinfo_table_body"></tbody>
 				</table>
-					<table id="koallaboration_table">
-					<thead>
-						<tr>
-					    	<th>Koallaboration</th>
-					  	</tr>
-					</thead> 
-				  	<tbody id="koallaboration_table_body"></tbody>
+				<table id="koallaboration_table">
 				</table>
 			</div>
 			<div id="bottom_form">
@@ -54,8 +53,8 @@ option.value = "koallaboration";
 option.text = "Koallaboration";
 koalin_type.add(option);
 
-var koalinfo_table = document.getElementById("koalinfo_table_body");
-var koallaboration_table = document.getElementById("koallaboration_table_body");
+var koalinfo_table = document.getElementById("koalinfo_table");
+var koallaboration_table = document.getElementById("koallaboration_table");
 
 
 readTextFile();
@@ -88,26 +87,89 @@ function readTextFile()
                 
                 for(var i = 0;i < lines.length;i++){
                 	row = lines[i].split(',');
-                	if(row.length==3) {
+                	if(row.length==4) {
 	                	if(row[1]=="koalinfo") {
 	                		addRowKoalinfo(row[2]);
+	                	} else if(row[1]=="koallaboration"){
+	                		addRowKoallaboration(row[2],row[0]);	
 	                	} else {
-	                		addRowKoallaboration(row[2]);	
+	                		addRowKoallaborationReply(row[2],row[3]);
 	                	}
                 	}
                 }
+                koallaboration_table.scrollTop = koallaboration_table.scrollHeight;
+                koalinfo_table.scrollTop = koalinfo_table.scrollHeight;
             }
         }
     }
     rawFile.send(null);
 }
 
-function addRowKoallaboration(text) {
+function addRowKoallaborationReply(text,to_id) {
 	if(text!="") {
-		var row = koallaboration_table.insertRow(-1);
+		var table_reply = document.getElementById("koallaborationrow_"+to_id).firstChild.firstChild;
+		var row = table_reply.insertRow(-1);
 		var cell = row.insertCell();
+		cell.className = "reply_cell";
 		cell.innerHTML = text;
 	} 
+	
+}
+
+function addRowKoallaboration(text,id) {
+	if(text!="") {
+		var row = koallaboration_table.insertRow(-1);
+		row.id = "koallaborationrow_"+id;
+		var cell = row.insertCell();
+		var table = document.createElement("table");
+		cell.appendChild(table);
+		
+		row = table.insertRow(-1);
+		var div = document.createElement("div");
+		div.innerHTML = text;
+		var button_reply = document.createElement("button");
+		button_reply.id = "reply_"+id;
+		button_reply.className = "reply_button";
+		button_reply.innerHTML = "Reply";
+		button_reply.addEventListener("click",replyForm);
+		div.appendChild(button_reply);
+		cell = row.insertCell();
+		cell.appendChild(div);
+	} 
+	
+}
+
+function replyForm(event){
+	var id = event.target.id.split("_")[1];
+	
+	var reply_form = document.createElement("form");
+	reply_form.setAttribute('method',"post");
+	reply_form.setAttribute('action',"process_reply.php");
+	reply_form.setAttribute('id',"add_form");
+	
+	var to_id = document.createElement("input");
+	to_id.setAttribute('type',"hidden");
+	to_id.setAttribute('value',id);
+	to_id.setAttribute('name',"to_id");
+	reply_form.appendChild(to_id);
+	
+	var text_area = document.createElement("textarea");
+	text_area.setAttribute('cols',"40");
+	text_area.setAttribute('rows',"5");
+	text_area.setAttribute('name',"text");
+	reply_form.appendChild(text_area);
+	
+	var button_reply = document.createElement("button");
+	button_reply.setAttribute('type',"submit");
+	button_reply.id = "reply_"+id;
+	button_reply.className = "reply_button";
+	button_reply.innerHTML = "Reply";
+	reply_form.appendChild(button_reply);
+	
+	var cell_button_reply = document.getElementById("reply_"+id).parentElement;
+	cell_button_reply.removeChild(document.getElementById("reply_"+id));
+	cell_button_reply.appendChild(reply_form);
+	
 }
 
 function addRowKoalinfo(text) {
