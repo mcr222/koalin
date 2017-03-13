@@ -1,6 +1,6 @@
 #image_header {
 	width:10%;
-	height: 30%;
+	height: 100px;
 }
 
 
@@ -9,14 +9,31 @@ img {
     max-height: 100%;
 }
 
+th {
+	font-family: arial, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	
+}
+
+#koalinfo_table, #koallaboration_table {
+	width:49%;
+	height: 100%;
+	display: inline-block;
+}
 
 table  {
 	font-family: arial, sans-serif;
 	font-size: 14px;
+	width:100%;
 	border-collapse: collapse;
-	width: 100%;
 	word-wrap: break-word;
 	word-break: break-all;
+}
+
+#two_tables {
+	height: 80%;
+	width:100%;
 }
 
 table td {
@@ -37,7 +54,16 @@ input {
 	overflow: hidden;
 }
 
+#add_form {
+	padding: 5px;
+	display: block,
+}
+
 #add_koalin{
+	display: block;
+}
+
+#koalin_type {
 	display: block;
 }
 
