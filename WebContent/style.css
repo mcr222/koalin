@@ -1,44 +1,59 @@
 #image_header {
-	width:10%;
+	width:100%;
 	height: 100px;
+	margin: -10px;
+	padding-left:40px;
 }
 
+body {
+	font-family: arial, sans-serif;
+	background-color:  #b4e19d;
+}
 
 img {
+	display: inline-block;
     max-width: 100%;
     max-height: 100%;
 }
 
-th {
+#header {
 	font-family: arial, sans-serif;
-	font-size: 18px;
+	font-size: 25px;
 	font-weight: bold;
-	
+	width:48%;
+	display: inline-block;
+	text-align: center;	
+	padding-bottom: 7px;
 }
 
+
 #koalinfo_table, #koallaboration_table {
-	width:49%;
-	height: 100%;
+	width:48%;
+	height: 92%;
+	table-layout: fixed;
 	display: inline-block;
+	overflow-y: auto;
+	margin-left: 16px;
 }
 
 table  {
 	font-family: arial, sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 	width:100%;
 	border-collapse: collapse;
 	word-wrap: break-word;
 	word-break: break-all;
+	
 }
 
 #two_tables {
-	height: 80%;
+	height: 87%;
 	width:100%;
 }
 
 table td {
 	border: 1px solid #dddddd;
-	text-align: center;
+	padding: 7px;
 }
 
 table tr:nth-child(even) {
@@ -56,7 +71,7 @@ input {
 
 #add_form {
 	padding: 5px;
-	display: block,
+	display: inline-block,
 }
 
 #add_koalin{
@@ -64,7 +79,18 @@ input {
 }
 
 #koalin_type {
-	display: block;
+	display: inline-block;
+}
+
+.reply_button {
+	font-size:15px;
+	font-weight:bold;
+	margin-left: 20px;
+	padding:2px 2px;
+}
+
+.reply_cell{
+	padding-left: 70px;
 }
 
 button{
@@ -91,6 +117,7 @@ button{
 	padding:10px 10px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #3d768a;
+	margin: 8px;
 }
 button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
@@ -103,7 +130,3 @@ button:hover {
 	background-color:#408c99;
 }
 
-button:active {
-	position:relative;
-	top:1px;
-}
