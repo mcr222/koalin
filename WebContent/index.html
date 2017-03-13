@@ -10,12 +10,33 @@
 		</div>
 		
 		<div id="main_content">
-			<table id="content_table"> 
-			</table>
-			<form action="process.php" method="POST" id="add_form">
-				<textarea name="text" id="text_to_add" cols="40" rows="5"></textarea>
-				<button type="submit" id="add_koalin">Koalin</button>
-			</form>
+			<div id="two_tables">
+				<table id="koalinfo_table"> 
+				<thead>
+				  <tr>
+				    <th>Koalinfo</th>
+				  </tr>
+				  </thead>
+				  <tbody id="koalinfo_table_body"></tbody>
+				</table>
+					<table id="koallaboration_table">
+					<thead>
+						<tr>
+					    	<th>Koallaboration</th>
+					  	</tr>
+					</thead> 
+				  	<tbody id="koallaboration_table_body"></tbody>
+				</table>
+			</div>
+			<div id="bottom_form">
+				<form action="process.php" method="POST" id="add_form">
+					<div> Post a:
+						<select name="type" id="koalin_type"></select>
+					</div>
+					<textarea name="text" id="text_to_add" cols="40" rows="5"></textarea>
+					<button type="submit" id="add_koalin">Koalin</button>
+				</form>
+			</div>
 		</div>
 	
 	</body>
@@ -23,14 +44,29 @@
 
 <script>
 
-var content_table = document.getElementById("content_table");
+var koalin_type = document.getElementById("koalin_type");
+var option = document.createElement("option");
+option.value = "koalinfo";
+option.text = "Koalinfo";
+koalin_type.add(option);
+option = document.createElement("option");
+option.value = "koallaboration";
+option.text = "Koallaboration";
+koalin_type.add(option);
+
+var koalinfo_table = document.getElementById("koalinfo_table_body");
+var koallaboration_table = document.getElementById("koallaboration_table_body");
+
 
 readTextFile();
 setInterval(readTextFile,10000);
 
 function clearRows() {
-	while (content_table.firstChild) {
-		content_table.removeChild(content_table.firstChild);
+	while (koalinfo_table.firstChild) {
+		koalinfo_table.removeChild(koalinfo_table.firstChild);
+	}
+	while (koallaboration_table.firstChild) {
+		koallaboration_table.removeChild(koallaboration_table.firstChild);
 	}
 }
 
@@ -48,8 +84,17 @@ function readTextFile()
             	clearRows();
                 var allText = rawFile.responseText;
                 var lines = allText.split('\n');
+                var row;
+                
                 for(var i = 0;i < lines.length;i++){
-                    addRow(lines[i]);
+                	row = lines[i].split(',');
+                	if(row.length==3) {
+	                	if(row[1]=="koalinfo") {
+	                		addRowKoalinfo(row[2]);
+	                	} else {
+	                		addRowKoallaboration(row[2]);	
+	                	}
+                	}
                 }
             }
         }
@@ -57,10 +102,17 @@ function readTextFile()
     rawFile.send(null);
 }
 
-
-function addRow(text) {
+function addRowKoallaboration(text) {
 	if(text!="") {
-		var row = content_table.insertRow(-1);
+		var row = koallaboration_table.insertRow(-1);
+		var cell = row.insertCell();
+		cell.innerHTML = text;
+	} 
+}
+
+function addRowKoalinfo(text) {
+	if(text!="") {
+		var row = koalinfo_table.insertRow(-1);
 		var cell = row.insertCell();
 		cell.innerHTML = text;
 	} 
