@@ -65,7 +65,7 @@ var koallaboration_table = document.getElementById("koallaboration_table");
 
 
 readTextFile();
-setInterval(readTextFile,10000);
+var refreshInterval = setInterval(readTextFile,10000);
 
 function clearRows() {
 	while (koalinfo_table.firstChild) {
@@ -147,6 +147,7 @@ function addRowKoallaboration(text,id) {
 }
 
 function replyForm(event){
+	clearInterval(refreshInterval);
 	var id = event.target.id.split("_")[1];
 	
 	var reply_form = document.createElement("form");
