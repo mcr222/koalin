@@ -1,7 +1,8 @@
 <?php
-	$data = $_POST['text'];
+	$text = $_POST['text'];
 	$to_id = $_POST['to_id'];
 
+	$data = str_replace(array("\n", "\r"), ' ', $text);
 	$fp = file('./data/data.txt');
 	$index = count($fp);
 	
