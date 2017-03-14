@@ -8,15 +8,6 @@
 		<div id="header">
 			<div id="image_header">
 	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
-	   			<img src="koalin.png"/>
    			</div>
    			<div id="instructions_header">
    				<div class="text">- Connect to <div class="italics"> koalin-hotspot</div> (pswd: <div class="italics"> koalin43</div>)</div>
@@ -36,7 +27,7 @@
 			</div>
 			<div id="bottom_form">
 				<form action="process.php" method="POST" id="add_form">
-					<div> Post a:
+					<div> Post to
 						<select name="type" id="koalin_type"></select>
 					</div>
 					<textarea name="text" id="text_to_add" cols="40" rows="5"></textarea>
@@ -129,6 +120,7 @@ function addRowKoallaboration(text,id) {
 		row.id = "koallaborationrow_"+id;
 		var cell = row.insertCell();
 		var table = document.createElement("table");
+		table.id="inner_koallaboration_table";
 		cell.appendChild(table);
 		
 		row = table.insertRow(-1);
