@@ -84,7 +84,7 @@ function readTextFile()
                 var row;
                 
                 for(var i = 0;i < lines.length;i++){
-                	row = lines[i].split(',');
+                	row = lines[i].split(';,;');
                 	if(row.length==4) {
 	                	if(row[1]=="koalinfo") {
 	                		addRowKoalinfo(row[2]);
