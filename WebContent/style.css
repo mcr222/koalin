@@ -1,13 +1,13 @@
 #header {
 	width:99%;
 	overflow:hidden;
-	height: 18%;
+	height: 23%;
 	margin: -1%;
 	padding-left:1.5%;
 }
 
 #image_header {
-	width:80%;
+	width:60%;
 	overflow:hidden;
 	height: 100%;
 	margin: -1%;
@@ -50,14 +50,15 @@ img {
 
 #instructions_header{
 	display: inline-block;
-	width: 18%;
+	width: 37%;
 	word-wrap: break-word;
 	margin:1%;
 	padding: 0.5%;
 	background-color: #ffff66;
 	border-radius: 20px;
+	border: 5px solid red;
 	float: right;
-	font-size: 0.9em;
+	font-size: 22px;
 }
 
 #koalinfo_table, #koallaboration_table {
@@ -67,6 +68,7 @@ img {
 	display: inline-block;
 	overflow-y: auto;
 	margin-left: 1%;
+	font-size: 22px;
 }
 
 #koalinfo_table {
@@ -79,7 +81,7 @@ img {
 
 table  {
 	font-family: arial, sans-serif;
-	font-size: 16px;
+	font-size: 22px;
 	width:100%;
 	border-collapse: collapse;
 	word-wrap: break-word;
@@ -88,7 +90,7 @@ table  {
 }
 
 #two_tables {
-	height: 87%;
+	height: 83%;
 	width:98%;
 }
 
