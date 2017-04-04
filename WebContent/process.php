@@ -7,7 +7,7 @@
 	$index = count($fp);
 	
 //IMPORTANT: with the server folder data/ should be given permission to write: sudo chmod -R 777 data/
-	$ret = file_put_contents('./data/data.txt', $index . ',' .  $type . ',' . $data . ',0' . "\n", FILE_APPEND | LOCK_EX);
+	$ret = file_put_contents('./data/data.txt', $index . ';,;' .  $type . ';,;' . $data . ';,;0' . "\n", FILE_APPEND | LOCK_EX);
 	$date = date('m/d/Y h:i:s a');
 	$ret1 = file_put_contents('./data/timestamps.txt', $date . "\n", FILE_APPEND | LOCK_EX);
 	header('Location: index.html'); 
